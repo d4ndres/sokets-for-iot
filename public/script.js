@@ -35,7 +35,6 @@ const sendMessage = () => {
     username: $username.value,
     message
   }
-  console.log(toSend)
   $chatHistory.insertAdjacentHTML('afterbegin', wrapperHTML(toSend));
   socket.emit('cliente2server', toSend)
   target.value = ''
