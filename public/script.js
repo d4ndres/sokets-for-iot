@@ -11,7 +11,6 @@ const wrapperHTML = ({username, message}) => {
 }
 
 const socket = io('http://localhost:8081');
-console.log(process.env.PORT)
 
 socket.on('mensaje-bienvenida', ( payload ) => {
   console.log( payload );
@@ -22,22 +21,27 @@ socket.on('server2cliente', ( payload ) => {
   $chatHistory.insertAdjacentHTML('afterbegin', wrapperHTML(payload));
 })
 
-const sendMessage = (ev) => {
+const $toSendMessage = document.querySelector('#toSendMessage')
+const sendMessage = () => {
   if(!$username.value) {
     console.warn('Please enter your username')
     return
   }
   
-  const message = ev.target.value;
+  const target = $toSendMessage;
+  const message = target.value;
   if(!message) return
   const toSend = {
     username: $username.value,
     message
   }
+  console.log(toSend)
   $chatHistory.insertAdjacentHTML('afterbegin', wrapperHTML(toSend));
   socket.emit('cliente2server', toSend)
-  ev.target.value = ''
+  target.value = ''
 }
+
+
 
 
 
