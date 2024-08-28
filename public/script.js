@@ -10,7 +10,7 @@ const wrapperHTML = ({username, message}) => {
   </div>`
 }
 
-const socket = io('http://localhost:8081');
+const socket = io('https://sokets-for-iot.vercel.app/');
 
 socket.on('mensaje-bienvenida', ( payload ) => {
   console.log( payload );
