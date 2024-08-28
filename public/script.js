@@ -10,7 +10,8 @@ const wrapperHTML = ({username, message}) => {
   </div>`
 }
 
-const socket = io('http://localhost:8080');
+const socket = io('http://localhost:8081');
+console.log(process.env.PORT)
 
 socket.on('mensaje-bienvenida', ( payload ) => {
   console.log( payload );
